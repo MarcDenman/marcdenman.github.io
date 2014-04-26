@@ -1,4 +1,10 @@
-For my first foray into the world of Arduino, in particular the SparkCore(backed from their superb [Kickstarter campagin](https://www.kickstarter.com/projects/sparkdevices/spark-core-wi-fi-for-everything-arduino-compatible)) I decided to try and make a quick and easy "[Sous-Vide](http://en.wikipedia.org/wiki/Sous-vide)" machine.
+---
+layout: post
+title: Spark Core Powered Sous Vide
+---
+
+
+For my first foray into the world of Arduino, in particular the SparkCore (backed from their superb [Kickstarter campagin](https://www.kickstarter.com/projects/sparkdevices/spark-core-wi-fi-for-everything-arduino-compatible)) I decided to try and make a quick and easy "[Sous-Vide](http://en.wikipedia.org/wiki/Sous-vide)" machine.
 
 I have been interested in the concept of Sous-Vide cooking for a little while and with the combination of having an old slow-cooker, a shiny new Spark Core, the [Spark Cloud](http://docs.spark.io/#/start/wait-what-is-this-thing-the-spark-cloud) and the number of tutorials on building a machine around the internet has lead to an appealing and simple project.
 
@@ -26,15 +32,14 @@ The GitHub repo for the project is [HERE](https://github.com/MarcDenman/SousVide
 The code behind the sous-vide machine is based around the [Arduino PID controller library](http://playground.arduino.cc/Code/PIDLibrary). The controller requires several variables; a *SetPoint* (target temperature for the machine), *Input* (current temperature of the machine) as well as three other variables (*Kp*, *Ki*, *Kd*) which controls the speed and aggression of the controller in heating up the machine and as it approaches the SetPoint. These three values are currently hard-coded into the code and require required tuning for the specific slow cooker, though there is a [Arduino PID AutoTune library](http://playground.arduino.cc/Code/PIDAutotuneLibrary) which can generate the va0lues if needed. I am currently using `Kp = 0.1`, `Ki = 150`, `Kd = 0.45` which work fairly well for me, however they could be tuned better in the future. 
 
 ###### Creating a new PID controller 
-```c
-PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
-```
+
+`PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);`
+
 
 ###### Using the PID controller
 
-```c
-myPID.Compute();
-```
+`myPID.Compute();`
+
 
 On calling the `Compute()` function the controller uses the various inputs described above to assign a value to *Output* which, in this scenario effectively controls whether the relay is off or on. If the output is above a certain value the relay is turned on, below the relay is turned off. The `Compute()` function gets called manually approximately 10 seconds.
 
@@ -46,7 +51,7 @@ I am currently getting around 2 degree variance, with the *SetPoint* at 65c the 
 
 Future Features:
 
-* Pre-Heating of Machine, wanting to cook at 14:00 with the water at 70c. The machine ensures the water is ready at the correct time. 
+* Pre-heating of machine, wanting to cook at 14:00 with the water at 70c. The machine ensures the water is ready at the correct time. 
 * Web API to simplify logging and storing of temperatures.
 * Graphing of temperatures.
 * Nice [shiny](https://www.youtube.com/watch?v=aFj8eFZx-TA) simple interface to control the machine.
