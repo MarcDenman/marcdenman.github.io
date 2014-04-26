@@ -45,7 +45,7 @@ On calling the `Compute()` function the controller uses the various inputs descr
 
 
 
-I am currently getting around 2 degree variance, with the *SetPoint* at 65c the lowest temperature is set around 64.5c and then up to 66.5c. The largest issue with the machine at the moment is that it takes a very very long time for the machine to reach the *SetPoint*
+I am currently getting around 2 degree variance, with the *SetPoint* at 65c the lowest temperature is set around 64.5c and then up to 66.5c. The largest issue with the machine at the moment is that it takes a very very long time for the machine to reach the *SetPoint*.
 
 
 
