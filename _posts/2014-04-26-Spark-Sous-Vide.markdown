@@ -26,7 +26,9 @@ There are elements of the code and structure is based from various tutorials aro
 
 The GitHub repo for the project is [HERE](https://github.com/MarcDenman/SousVideFirmware)
 
-*** PRETTY PICTURES ***
+![SparkRelay](http://i.imgur.com/am69Lfk.jpg)
+
+![Whole Machine](http://i.imgur.com/tu4i9Fr.jpg)
 
 
 The code behind the sous-vide machine is based around the [Arduino PID controller library](http://playground.arduino.cc/Code/PIDLibrary). The controller requires several variables; a *SetPoint* (target temperature for the machine), *Input* (current temperature of the machine) as well as three other variables (*Kp*, *Ki*, *Kd*) which controls the speed and aggression of the controller in heating up the machine and as it approaches the SetPoint. These three values are currently hard-coded into the code and require required tuning for the specific slow cooker, though there is a [Arduino PID AutoTune library](http://playground.arduino.cc/Code/PIDAutotuneLibrary) which can generate the va0lues if needed. I am currently using `Kp = 0.1`, `Ki = 150`, `Kd = 0.45` which work fairly well for me, however they could be tuned better in the future. 
@@ -45,7 +47,7 @@ On calling the `Compute()` function the controller uses the various inputs descr
 
 
 
-I am currently getting around 2 degree variance, with the *SetPoint* at 65c the lowest temperature is set around 64.5c and then up to 66.5c. The largest issue with the machine at the moment is that it takes a very very long time for the machine to reach the *SetPoint*.
+I am currently getting around 3 degree variance, with the *SetPoint* at 65c the lowest temperature is set around 63.5c and then up to 66.5c. This difference is a little larger than I would like, so in the coming weeks I will tuning the machine again to try and decrease the large changes in temperature. The largest issue with the machine at the moment is that it takes a very very long time for the machine to reach the *SetPoint*.
 
 
 
